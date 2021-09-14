@@ -1,9 +1,19 @@
-python manage.py runserver 
+-- python manage.py runserver 
 >>> Roda o nosso servidor, se este nunca foi inicializado, cria a pasta principal do projeto (ou app), com os respectivos arquivos base.
 
-python manage.py startapp pages
->>> Cria um novo app em nosso site, lembrando que é necessário incluí-lo no array 'INSTALLED_APPS', dentro do script 'settings', no projeto principal (sintaxe: 'XXXX.apps.PagesConfig' - XXX sendo o nome do novo app).
+-- python manage.py startapp pages
+>>> Cria um novo app em nosso site, lembrando que é necessário incluí-lo no array 'INSTALLED_APPS', dentro do script 'settings', no projeto principal (sintaxe: 'XXXX.apps.XXXXConfig' - XXXX sendo o nome do novo app).
 
 >>> Criamos um 'urls.py' dentro do app 'pages', este arquivo irá conter as rotas. Este arquivo não é criado por padrão pelo django.
 Dentro de 'urls.py', associamos as views criadas junto as suas respectivas rotas.
->>> Por fim, adicionamos a nova rota dentro do 'urls.py' do app principal 'btre'.
+Por fim, adicionamos a nova rota dentro do 'urls.py' do app principal 'btre'.
+
+>>> Adicionamos em 'settings.py', no array JSON 'TEMPLATES', item 'DIRS', o local de nossa pasta de templates.
+Criamos os templates específicos para a landing page 'pages', e atualizamos o 'urls' para acessa-los.
+Criamos o template 'base.html' para extender nos demais templates que serão usados no site, usando o jinja ({%  %}) para possibilitar a passagem de variáveis e demais conteúdos.
+
+>>> Adicionamos os arquivos estáticos (css, js, img's, etc.) ao projeto dentro da pasta principal 'btre'.
+Adicionamos ao 'settings.py', as demais variáveis relacionadas: 'STATIC_ROOT', 'STATICFILES_DIRS'.
+-- python manage.py collectstatic
+Por fim, rodamos o comando acima para consolidar na pasta do 'STATIC_ROOT', os arquivos separados nos diretórios 'STATICFILES_DIRS', dentre outros, como os do 'admin', que é criado por padrão pelo django.
+Não é recomendado realizarmos o upload destes arquivos no GIT, por isso esta pasta é adicionada ao '.gitignore'
