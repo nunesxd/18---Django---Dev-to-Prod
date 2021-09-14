@@ -1,0 +1,9 @@
+python manage.py runserver 
+>>> Roda o nosso servidor, se este nunca foi inicializado, cria a pasta principal do projeto (ou app), com os respectivos arquivos base.
+
+python manage.py startapp pages
+>>> Cria um novo app em nosso site, lembrando que é necessário incluí-lo no array 'INSTALLED_APPS', dentro do script 'settings', no projeto principal (sintaxe: 'XXXX.apps.PagesConfig' - XXX sendo o nome do novo app).
+
+>>> Criamos um 'urls.py' dentro do app 'pages', este arquivo irá conter as rotas. Este arquivo não é criado por padrão pelo django.
+Dentro de 'urls.py', associamos as views criadas junto as suas respectivas rotas.
+>>> Por fim, adicionamos a nova rota dentro do 'urls.py' do app principal 'btre'.
