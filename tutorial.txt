@@ -6,7 +6,8 @@
 
 >>> Criamos um 'urls.py' dentro do app 'pages', este arquivo irá conter as rotas. Este arquivo não é criado por padrão pelo django.
 Dentro de 'urls.py', associamos as views criadas junto as suas respectivas rotas.
-Por fim, adicionamos a nova rota dentro do 'urls.py' do app principal 'btre'.
+Por fim, adicionamos a nova rota dentro do 'urls.py' do app principal 'btre', de forma que a url principal, o root de nosso site, seja sempre do app 'pages'.
+. OBS: Poderíamos colocar como 'pages/', mas usando apenas o '', nós deixamos a pagina index como sendo a principal de nosso site;
 
 >>> Adicionamos em 'settings.py', no array JSON 'TEMPLATES', item 'DIRS', o local de nossa pasta de templates.
 Criamos os templates específicos para a landing page 'pages', e atualizamos o 'urls' para acessa-los.
@@ -31,3 +32,6 @@ Uma outra funcionalidade adicionada é a adição do 'active' no HTML do '_navba
 {% else %}
     class=""
 {% endif %}
+
+>>> Criamos os demais apps da página: 'listings' e 'realtors', criando também um arquivo de urls para eles, adicionando-os aos apps no 'settings'. A ideia aqui é terminar o desenvolvimento do front-end, para seguirmos com o back-end.
+Quanto as rotas do app 'listings', além do template de todos os listings, também queremos o acesso a um listing específico, para isso, o usuário deverá passar o respectivo id pela URL, isso pode ser feito pelo comando: '<int:listing_id>' (onde 'int' é o tipo do dado que estamos recebendo, um tipo de parser).
