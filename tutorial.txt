@@ -21,3 +21,13 @@ Não é recomendado realizarmos o upload destes arquivos no GIT, por isso esta p
 >>> Desenvolvemos os templates criados anteriormente, integrando o bootstrap e demais bibliotecas usadas. Lembrando que devemos mudar o diretório dos arquivos estáticos, transformando-os em variáveis, para isso devemos usar o Jinja, comandos usados: '{% load static %}' (no inicio do arquivo), '{% block content %}' '{% endblock %}', '{% static 'css/all.css'%}' (para cada arquivo estático utilizado).
 
 >>> Utilizamos o 'partials' para segregar o html base ainda mais, entre 'top bar', 'nav bar' e 'footer'. Por boas práticas, devemos nomear os htmls do partials com um '_' na frente.
+
+>>> Copiamos o conteúdo HTML para os respectivos templates, lembrando da necessidade de mudar alguns referênciais posteriormente, refletindo a necessidade de dinamicidade do código.
+. OBS: O 'extends' dos partials, sempre deve ser a primeira linha do código, mesmo com o 'load static'.
+Outra alteração que fazemos é o 'linking' entre as partes do site, para isso usamos: {% url 'XXXX' %} (XXXX sendo o respectivo html, mas sem a extensão 'html' no final). Este código usa a variável 'name' que demos ao app 'pages', nas rotas 'index', 'about', etc.
+Uma outra funcionalidade adicionada é a adição do 'active' no HTML do '_navbar' de forma dinâmica. Para isso devemos usar os condicionais do Jinja, exemplo: 
+{% if '/' == request.path %} ou {% if 'about' in request.path %}
+    class="active"
+{% else %}
+    class=""
+{% endif %}
