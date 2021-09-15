@@ -17,3 +17,7 @@ Adicionamos ao 'settings.py', as demais variáveis relacionadas: 'STATIC_ROOT', 
 -- python manage.py collectstatic
 Por fim, rodamos o comando acima para consolidar na pasta do 'STATIC_ROOT', os arquivos separados nos diretórios 'STATICFILES_DIRS', dentre outros, como os do 'admin', que é criado por padrão pelo django.
 Não é recomendado realizarmos o upload destes arquivos no GIT, por isso esta pasta é adicionada ao '.gitignore'
+
+>>> Desenvolvemos os templates criados anteriormente, integrando o bootstrap e demais bibliotecas usadas. Lembrando que devemos mudar o diretório dos arquivos estáticos, transformando-os em variáveis, para isso devemos usar o Jinja, comandos usados: '{% load static %}' (no inicio do arquivo), '{% block content %}' '{% endblock %}', '{% static 'css/all.css'%}' (para cada arquivo estático utilizado).
+
+>>> Utilizamos o 'partials' para segregar o html base ainda mais, entre 'top bar', 'nav bar' e 'footer'. Por boas práticas, devemos nomear os htmls do partials com um '_' na frente.
