@@ -17,7 +17,7 @@ Criamos o template 'base.html' para extender nos demais templates que serão usa
 Adicionamos ao 'settings.py', as demais variáveis relacionadas: 'STATIC_ROOT', 'STATICFILES_DIRS'.
 -- python manage.py collectstatic
 Por fim, rodamos o comando acima para consolidar na pasta do 'STATIC_ROOT', os arquivos separados nos diretórios 'STATICFILES_DIRS', dentre outros, como os do 'admin', que é criado por padrão pelo django.
-Não é recomendado realizarmos o upload destes arquivos no GIT, por isso esta pasta é adicionada ao '.gitignore'
+Não é recomendado realizarmos o upload destes arquivos no GIT, por isso esta pasta é adicionada ao '.gitignore'. Usamos o site 'https://www.gitignore.io/' para criarmos um gitignore completo para o django, com todas as pastas e arquivos que geralmente são desconsiderados.
 
 >>> Desenvolvemos os templates criados anteriormente, integrando o bootstrap e demais bibliotecas usadas. Lembrando que devemos mudar o diretório dos arquivos estáticos, transformando-os em variáveis, para isso devemos usar o Jinja, comandos usados: '{% load static %}' (no inicio do arquivo), '{% block content %}' '{% endblock %}', '{% static 'css/all.css'%}' (para cada arquivo estático utilizado).
 
@@ -35,3 +35,5 @@ Uma outra funcionalidade adicionada é a adição do 'active' no HTML do '_navba
 
 >>> Criamos os demais apps da página: 'listings' e 'realtors', criando também um arquivo de urls para eles, adicionando-os aos apps no 'settings'. A ideia aqui é terminar o desenvolvimento do front-end, para seguirmos com o back-end.
 Quanto as rotas do app 'listings', além do template de todos os listings, também queremos o acesso a um listing específico, para isso, o usuário deverá passar o respectivo id pela URL, isso pode ser feito pelo comando: '<int:listing_id>' (onde 'int' é o tipo do dado que estamos recebendo, um tipo de parser).
+
+>>> Criamos a nossa base de dados chamada 'btre', o curso se utiliza do Postgres, mas iremos utilizar o SQL Server.
