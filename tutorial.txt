@@ -37,3 +37,4 @@ Uma outra funcionalidade adicionada é a adição do 'active' no HTML do '_navba
 Quanto as rotas do app 'listings', além do template de todos os listings, também queremos o acesso a um listing específico, para isso, o usuário deverá passar o respectivo id pela URL, isso pode ser feito pelo comando: '<int:listing_id>' (onde 'int' é o tipo do dado que estamos recebendo, um tipo de parser).
 
 >>> Criamos a nossa base de dados chamada 'btre', o curso se utiliza do Postgres, mas iremos utilizar o SQL Server.
+Para conexão com o django, baixamos o pacote 'mssql-django' e configuramos o django adequadamente, com atenção a configuração da porta, que retorna um erro caso não seja feita corretamente.

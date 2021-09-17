@@ -79,8 +79,16 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "mssql",
+        "NAME": "btredb",
+        "USER": "btre_admin",
+        "PASSWORD": "123",
+        "HOST": "BR2296316W1\SQLEXPRESS2014",
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+            "Trusted_Connection": "yes",
+        },
+        'extra_params': 'PORT=1433'
     }
 }
 
