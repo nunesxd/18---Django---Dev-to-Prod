@@ -1,3 +1,6 @@
+>>> Inicialmente criamos o nosso projeto localmente e utilizamos o 'venv' (Virtual Enviroment) para estabelecer o ambiente virtual, o venv é uma biblioteca integrada ao Python. Comando para instalar:
+-- python -m venv ./venv (O './venv' é o local ao qual queremos criar nosso ambiente virtual)
+
 -- python manage.py runserver 
 >>> Roda o nosso servidor, se este nunca foi inicializado, cria a pasta principal do projeto (ou app), com os respectivos arquivos base.
 
@@ -27,7 +30,7 @@ Não é recomendado realizarmos o upload destes arquivos no GIT, por isso esta p
 . OBS: O 'extends' dos partials, sempre deve ser a primeira linha do código, mesmo com o 'load static'.
 Outra alteração que fazemos é o 'linking' entre as partes do site, para isso usamos: {% url 'XXXX' %} (XXXX sendo o respectivo html, mas sem a extensão 'html' no final). Este código usa a variável 'name' que demos ao app 'pages', nas rotas 'index', 'about', etc.
 Uma outra funcionalidade adicionada é a adição do 'active' no HTML do '_navbar' de forma dinâmica. Para isso devemos usar os condicionais do Jinja, exemplo: 
-{% if '/' == request.path %} ou {% if 'about' in request.path %}
+-- {% if '/' == request.path %} ou {% if 'about' in request.path %}
     class="active"
 {% else %}
     class=""
@@ -38,3 +41,30 @@ Quanto as rotas do app 'listings', além do template de todos os listings, tamb�
 
 >>> Criamos a nossa base de dados chamada 'btre', o curso se utiliza do Postgres, mas iremos utilizar o SQL Server.
 Para conexão com o django, baixamos o pacote 'mssql-django' e configuramos o django adequadamente, com atenção a configuração da porta, que retorna um erro caso não seja feita corretamente.
+
+>>> Com a base criada, criamos o modelo, que é uma classe de nome singular e com a primeira letra maiúscula.
+Vamos aos comandos comuns:
+- 'on_delete=models.DO_NOTHING': Refere ao que se fazer quanto a deleção do item na tabela secundária, se a primaria deve ou não manter as informações, nesse caso ela deve manter;
+- 'models.CharField(max_length=200)': Campo de texto comum, onde podemos setar algumas configurações, como o tamanho máximo do campo;
+- 'models.TextField(blank=True)': Também um campo de texto, mas permite um tamanho maior, o blank faz com que o campo seja opcional;
+- 'models.IntegerField()': Campo inteiro, não é necessário passar nenhum outro parâmetro;
+- 'models.DecimalField(max_digits=2, decimal_places=1)': Campo de número float, onde podemos definir a quantidade de números e o número de decimais, por parâmetro;
+- 'models.ImageField(upload_to='photos/%Y/%m/%d/')': Campo especial para fotos no Django. Dentro da base de dados este campo será um string, mas o Django considera o campo de uma forma diferente. Passamos por parâmetro a pasta que queremos que o Django salve temporariamente os arquivos (o django criará uma pasta chamada 'midia' e uma outra com o nome que especificarmos, diferenciando por datas).
+Além da definição dos campos no modelo, definimos também o campo principal que será apresentado nas tabelas, através do comando abaixo:
+-- def __str__(self):
+    return self.title
+
+. OBS: É possível acessarmos qualquer outro app diretamente pelo código, usando o 'from [app].[modulo] import [item]' mesmo.
+
+-- python manage.py makemigration
+>>> Este comando cria um arquivo que possibilita a criação das tabelas na base de dados, mas as bases não são criadas imediatamente.
+
+-- python manage.py sqlmigrate listings 0001
+>>> Nos é apresetando o comando SQL capaz da criação da respectiva tabela na base de dados. 'listings' é o nome do app, que será o nome da tabela, '0001' é o nome do arquivo criado pelo comando 'makemigrations', que contém os detalhes de todos os campos a serem criados, embora não estejam em SQL ainda.
+Por fim, rodamos o 'migrate', que gera de fato a tabela com os respectivos campos.
+
+>>> O Django já possui um local específico para os admins, basta abrir o servidor e acessar o seu link + '/admin'. O problema é que não temos um usuários admin logo no começo, devemos criá-lo com comando abaixo:
+-- python manage.py createsuperuser
+A princípo, os usuários admin só tem acesso para adicionar usuários e grupos ao site. Dentro do módulo principal do projeto 'btre', temos um módulo de 'admin'. Nele podemos adicionr os respectivos modelos para serem manipulados pelos super usuários, ex:
+-- admin.site.register(Listing)
+Onde 'Listing' é o modelo que criamos, lembrando que devemos importar os modelos para serem 'registrados' no módulo admin.
