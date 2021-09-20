@@ -68,3 +68,8 @@ Por fim, rodamos o 'migrate', que gera de fato a tabela com os respectivos campo
 A princípo, os usuários admin só tem acesso para adicionar usuários e grupos ao site. Dentro do módulo principal do projeto 'btre', temos um módulo de 'admin'. Nele podemos adicionr os respectivos modelos para serem manipulados pelos super usuários, ex:
 -- admin.site.register(Listing)
 Onde 'Listing' é o modelo que criamos, lembrando que devemos importar os modelos para serem 'registrados' no módulo admin.
+
+>>> Adicionamos algumas configurações para a pasta de 'media' (parecido com o que foi feito para os arquivos estáticos - variáveis 'MEDIA_ROOT' e 'MEDIA_URL'), que irá conter as fotos que configuramos em nosso banco de dados.
+Para usarmos a pasta, adicionamos-a ao módulo 'urls.py' do projeto principal 'btre', ex:
+-- urlpatterns = [] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+Ao adicionarmos os realtors e os listings, é possível identificar que as imagens foram adicionadas a pasta 'media' dentro do projeto, separando pela data da inserção da imagem.
