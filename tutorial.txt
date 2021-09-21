@@ -78,3 +78,9 @@ Ao adicionarmos os realtors e os listings, é possível identificar que as image
 O template deve ser chamado como 'base_site.html', dentro da pasta 'admin'. 
 Dentro do html / jinja, devemos extender 'admin/base.html' e podemos alterar o bloco 'branding', desta forma podemos alterar a parte que fica como 'Django Administration'.
 Também podemos acrescentar um novo arquivo stylesheet, usando o bloco 'extrastyle'. Podemos usar o dev console para identificar os respectivos ids e classes que podemos substituir.
+
+>>> Uma outra customização que pode ser feita é a de mostrar mais campos dos modelos nas listagens que aparecem no admin.
+Para isso, nós devemos acrescentar as opções dentro do módulo 'admin.py' do app que queremos alterar, no caso 'listings', exemplo:
+-- class XXXXAdmin(admin.ModelAdmin):
+O 'ModelAdmin' nos permite acessar diversos atributos especificos da exibição em tabelas (O XXXX é o nome do modelo basicamente).
+
