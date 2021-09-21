@@ -73,3 +73,8 @@ Onde 'Listing' é o modelo que criamos, lembrando que devemos importar os modelo
 Para usarmos a pasta, adicionamos-a ao módulo 'urls.py' do projeto principal 'btre', ex:
 -- urlpatterns = [] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 Ao adicionarmos os realtors e os listings, é possível identificar que as imagens foram adicionadas a pasta 'media' dentro do projeto, separando pela data da inserção da imagem.
+
+>>> Em seguida, queremos customizar o site do 'admin', como o site já existe internamente no Django, podemos tirar proveito disso e apenas alterar aquilo que queremos, exemplo:
+O template deve ser chamado como 'base_site.html', dentro da pasta 'admin'. 
+Dentro do html / jinja, devemos extender 'admin/base.html' e podemos alterar o bloco 'branding', desta forma podemos alterar a parte que fica como 'Django Administration'.
+Também podemos acrescentar um novo arquivo stylesheet, usando o bloco 'extrastyle'. Podemos usar o dev console para identificar os respectivos ids e classes que podemos substituir.

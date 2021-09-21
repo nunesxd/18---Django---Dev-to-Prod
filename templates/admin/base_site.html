@@ -1,0 +1,13 @@
+<!--Tanto o 'extends', quanto o 'brading', 'extrastyle' são variáveis presentes no padrão já estabelecido no site admin do Django, lembrando que o site já existe quando criamos o nosso projeto-->
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+    <h1 id="head">
+        <img src="{% static 'img/logo.png' %}" alt="BT Real Estate" height="50" width="80" class="brand_img"> Admin Area
+    </h1>
+{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
