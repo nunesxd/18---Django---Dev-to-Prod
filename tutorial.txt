@@ -83,4 +83,18 @@ Também podemos acrescentar um novo arquivo stylesheet, usando o bloco 'extrasty
 Para isso, nós devemos acrescentar as opções dentro do módulo 'admin.py' do app que queremos alterar, no caso 'listings', exemplo:
 -- class XXXXAdmin(admin.ModelAdmin):
 O 'ModelAdmin' nos permite acessar diversos atributos especificos da exibição em tabelas (O XXXX é o nome do modelo basicamente).
+. OBS: Ocorreu um bug de apresentação do contéudo dentro da sessão de adição de itens para os apps, onde o navbar sticky aparecia com width 100%, para resolver esse problema, nós resetamos o cache pelas últimas 24 hrs.
 
+>>> Agora iremos obter os dados de nosso banco de dados e apresentá-los dentro de nossos templates.
+Para isso, dentro de 'views.py' do respectivo app, devemos importar o modelo e seguir um pequeno padrão que se é utilizado.
+Primeiro criamos uma variável contendo um dicionário (por convenção o nome deve ser 'context'), com os dados que queremos passar ao template, e depois passamos este dicionário como um terceiro parâmetro para o método 'render'. Exemplo de dicionário:
+-- context = {"name": "Rafael"}
+Este dicionário pode ser acessado no template usando:
+-- {{ name }}
+Mas antes, obtemos do banco todos os dados que desejamos passar ao template, usando:
+-- [variável] = [modelo].objects.all
+
+>>> Dentro do template de 'listings', por exemplo, verificamos primeiro se a lista existe, usando:
+-- {% if listings %} {% else %} {% endif %}
+Caso encontre, podemos usar o jinja para fazer um loop entre as iterações, usando:
+-- {% for listing in listings %} {% endfor %}
