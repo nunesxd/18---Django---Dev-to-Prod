@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'btre.wsgi.application'
 
+USE_L10N = True
+
+USE_THOUSAND_SEPARATOR = True
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

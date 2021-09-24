@@ -98,3 +98,19 @@ Mas antes, obtemos do banco todos os dados que desejamos passar ao template, usa
 -- {% if listings %} {% else %} {% endif %}
 Caso encontre, podemos usar o jinja para fazer um loop entre as iterações, usando:
 -- {% for listing in listings %} {% endfor %}
+Continuando com o preenchimento dinâmico de nosso template, a próxima etapa seria colocar os campos do modelo em nosso template, conforme mencionado anteriormente. Cabe ressaltar que a imagem pode ser acessada fazendo:
+-- {{ listing.photo_main.url }}
+Um problema identificado é com relação a pontuação de números, o Django disponibiliza um app para isso, que não é adicionado automaticamente, para isso, devemos adicionar ao 'settings' o app:
+-- 'django.contrib.humanize',
+O 'humanize' deve ser ativado no template para ser utilizado:
+-- {% load humanize %}
+Para poder ser usado nos campos de valor, no caso, colocar a pontuação de milhar, podemos usar:
+-- {{ listing.price | intcomma }} (O '| intcomma' é o trecho do humanize)
+OBS: Podemos ativar a localização dentro de settings, porque no caso, nos EUA o milhar é ',' e não o '.' como no português.
+--  USE_L10N = True e USE_THOUSAND_SEPARATOR = True
+Como o 'listings' tem uma relação com 'realtors', podemos usar este relacionamento para chamar os atributos dos realtors no template do listings:
+-- {{ listing.realtor }} (como definimos o campo principal do modelo do realtor como nome, o código escrito irá mostrar essa coluna)
+Para diferença de dias, podemos usar o humanize:
+-- {{ listing.list_date | timesince }} (O '| timesince' é o trecho do humanize)
+-- {% url 'listing' listing.id %}
+
