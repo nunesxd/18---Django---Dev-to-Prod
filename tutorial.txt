@@ -131,3 +131,8 @@ Existem propriedades que auxiliam nosso template, como obter o número da págin
 -- {{ listings.previous_page_number }} ou {{ listings.next_page_number }}
 Podemos realizar o looping para determinar a quantidade de páginas necessárias:
 -- {% for page_number in listings.paginator.page_range %}
+
+>>> Depois desenvolvemos o template do 'home, index' do app 'pages', para apresentar os 3 últimos imóveis adicionados ao BD. O código é bem similar ao que desenvolvemos anteriormente, com adição da notação '[:3]' para pegarmos apenas os 3 últimos:
+-- [ORM].objects.order_by(-[campo_de_data])[:3]
+
+>>> Agora iremos atualizar no template do 'about.html', com as informações do vendedor do mês, então precisamos do modelo dos 'realtors' dentro do app 'pages'. O código segue o mesmo esquema que anteriormente.
