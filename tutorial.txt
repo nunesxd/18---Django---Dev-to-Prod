@@ -92,7 +92,10 @@ Primeiro criamos uma variável contendo um dicionário (por convenção o nome d
 Este dicionário pode ser acessado no template usando:
 -- {{ name }}
 Mas antes, obtemos do banco todos os dados que desejamos passar ao template, usando:
--- [variável] = [modelo].objects.all
+-- [variável] = [modelo].objects.all()
+Uma outra opção ao '.all', que mostra os itens desorganizados, podemos usar o '.order_by([-,+][campo])' para ordenar a nossa lista, o '-' e '+' é ascendente ou descendente.
+Também podemos filtar a nossa base, como no caso onde não queremos apresentar no site os imóveis que não estiverem publicados, adicionando o código abaixo ao select do object acima:
+-- .filter(is_published=True) (Onde o campo que está em parenteses será o filtro)
 
 >>> Dentro do template de 'listings', por exemplo, verificamos primeiro se a lista existe, usando:
 -- {% if listings %} {% else %} {% endif %}
@@ -114,3 +117,17 @@ Para diferença de dias, podemos usar o humanize:
 -- {{ listing.list_date | timesince }} (O '| timesince' é o trecho do humanize)
 -- {% url 'listing' listing.id %}
 
+>>> A próxima etapa é adicionar a paginação, neste caso, no template do 'listings'. Para isso, devemos adicionar ao método que queremos na 'views.py'.
+-- paginator = Paginator(listings, 3) --- Onde 3 é o número de itens por página.
+page = request.GET.get('page')
+paged_listings = paginator.get_page(page)
+
+>>> No template do 'listings', que é onde queremos a paginação no momento, podemos colocar o template em um looping, utilizando as classes bootstrap para manter a aparência que desejamos. 
+A ideia da paginação é verificar por etapas a existência de cada elemento, ou seja, queremos um markup como: '<123>', então devemos verificar se existe o antes ('<'), o meio ('123') e o fim ('>'). E lidar com os pormenores, como chegar no fim e no início da lista, o botão deve estar desabilitado.
+No template, podemos verificar por 'if' uma série de situações, como:
+-- {% if listings.has_other_pages %}
+-- {% if listings.has_previous %} ou {% if listings.has_next %}
+Existem propriedades que auxiliam nosso template, como obter o número da página anterior:
+-- {{ listings.previous_page_number }} ou {{ listings.next_page_number }}
+Podemos realizar o looping para determinar a quantidade de páginas necessárias:
+-- {% for page_number in listings.paginator.page_range %}
