@@ -136,3 +136,8 @@ Podemos realizar o looping para determinar a quantidade de páginas necessárias
 -- [ORM].objects.order_by(-[campo_de_data])[:3]
 
 >>> Agora iremos atualizar no template do 'about.html', com as informações do vendedor do mês, então precisamos do modelo dos 'realtors' dentro do app 'pages'. O código segue o mesmo esquema que anteriormente.
+
+>>> O próximo template a ser alterado é o do 'listing', no singular. Como podemos passar o ID do listing que queremos por URL, foi interessante utilizarmos o método do Django abaixo, pois caso entremos com um ID inexistente, a página não será carregada:
+-- get_object_or_404([modelo], pk=[id, ou chave])
+Como cada imóvel pode ter ou não as 6 fotos possíveis, resolvemos criar um segundo objeto contendo estas fotos e passá-las pelo 'context' ao template. Ao invés de fazer um 'if' para cada foto. Cabe ressaltar que usamos o método do próprio Python para isso, que nos permite obter a 'url' da photo:
+-- getattr([modelo], [coluna desejada]).url

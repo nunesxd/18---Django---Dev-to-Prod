@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import Listing
 
@@ -20,7 +20,22 @@ def index(request):
 
 
 def listing(request, listing_id):
-    return render(request, 'listings/listing.html')
+    listing = get_object_or_404(Listing, pk=listing_id)
+
+    # Como cada imóvel pode, ou não, ter as 6 fotos possíveis, pensamos em verificar inicialmente no BD e depois passar o objeto para o template, de forma separada do listing.
+    other_photos = []
+    for n in range(1, 7):
+        try:
+            other_photos.append(getattr(listing, f'photo_{n}').url)
+        except ValueError:
+            continue
+
+    context = {
+        "listing": listing,
+        "other_photos": other_photos
+    }
+
+    return render(request, 'listings/listing.html', context)
 
 
 def search(request):
