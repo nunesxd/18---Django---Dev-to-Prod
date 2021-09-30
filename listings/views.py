@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import Listing
-from listings.choices import bedroom_choices, price_choices, state_choices
+from .choices import bedroom_choices, price_choices, state_choices
 
 
 def index(request):
@@ -40,8 +40,47 @@ def listing(request, listing_id):
 
 
 def search(request):
+    queryset_list = Listing.objects.order_by('-list_date')
+
+    # Verifica se o campo 'keywords' foi preenchido:
+    if 'keywords' in request.GET:
+        # Obtém o conteúdo do que foi passado pelo método GET:
+        keywords = request.GET['keywords']
+        # Verifica se por acaso não está vazio:
+        if keywords:
+            queryset_list = queryset_list.filter(
+                description__icontains=keywords)
+
+    # Verifica se o campo 'city' foi preenchido:
+    if 'city' in request.GET:
+        city = request.GET['city']
+        if city:
+            queryset_list = queryset_list.filter(
+                city__iexact=city)
+
+    # Verifica se o campo 'state' foi preenchido:
+    if 'state' in request.GET:
+        state = request.GET['state']
+        if state:
+            queryset_list = queryset_list.filter(
+                state__iexact=state)
+
+    # Verifica se o campo 'bedrooms' foi preenchido:
+    if 'bedrooms' in request.GET:
+        bedrooms = request.GET['bedrooms']
+        if bedrooms:
+            queryset_list = queryset_list.filter(
+                bedrooms__lte=bedrooms)
+
+    # Verifica se o campo 'price' foi preenchido:
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            queryset_list = queryset_list.filter(
+                price__lte=price)
 
     context = {
+        "listings": queryset_list,
         "bedroom_choices": bedroom_choices,
         "price_choices": price_choices,
         "state_choices": state_choices

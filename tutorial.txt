@@ -148,4 +148,13 @@ Alteramos o 'index.html' de forma a utilizar essas novas opções de forma dinâ
 . OBS: Devemos usar o '.items', sem '()', para acessar ambas as chaves e os valores de um dicionário no Jinja.
 -- {% for key, val in state_choices.items %}
 
->>> Diferente do que foi feito no curso, iremos criar um 'partials' para colocar nosso form do search, uma vez que ele é usado tanto no 'index.html', quanto na própria página do 'search.html', importando esta funcionalidade dentro dos respectivos htmls. 
+>>> Diferente do que foi feito no curso, iremos criar um 'partials' para colocar nosso form do search, uma vez que ele é usado tanto no 'index.html', quanto na própria página do 'search.html', importando esta funcionalidade dentro dos respectivos htmls.
+. OBS: Cabe mencionar que o 'partials' recebe todo o conteúdo do 'context' que aquele template está recebendo, desta forma, se o template do index e do search estão recebendo os dicionários do 'choices.py', isso significa que o partials irá recebê-los também, não sendo necessário a inclusão deles no 'urls.py' nem nada assim.
+
+>>> Ainda no app 'listings', agora iremos adicionar a funcionalidade do search. Primeiro verificamos se o campo foi preenchido, através do método 'GET' recebido, obtemos o respectivo valor, e filtramos a base por este valor.
+Cabe ressaltar que no caso de valores que serão procurados dentro de um campo texto (como um 'like' do SQL, ou 'contains'), ou seja, devemos usar a notação:
+-- [objeto].filter([campo]__icontains=[valor])
+Para os casos que queremos exatamente o mesmo valor:
+-- [campo]__iexact=[valor]
+Para os casos que queremos menor que, incluindo:
+-- [campo]__lte=[valor] ('lte' é 'less then or equal to')
