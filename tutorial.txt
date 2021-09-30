@@ -141,3 +141,11 @@ Podemos realizar o looping para determinar a quantidade de páginas necessárias
 -- get_object_or_404([modelo], pk=[id, ou chave])
 Como cada imóvel pode ter ou não as 6 fotos possíveis, resolvemos criar um segundo objeto contendo estas fotos e passá-las pelo 'context' ao template. Ao invés de fazer um 'if' para cada foto. Cabe ressaltar que usamos o método do próprio Python para isso, que nos permite obter a 'url' da photo:
 -- getattr([modelo], [coluna desejada]).url
+
+>>> Um outro template que poderia melhorar é o 'index.html', pois o form do search utiliza as opções diretamente pelo html, sendo que poderíamos passá-las por lisa / dicionario pelo Python ao template.
+Para isso, criamos um módulo chamado 'choices.py' dentro do app 'listings' e criamos as opções por lá, posteriormente passamos esses dados para a view do app 'pages' usar.
+Alteramos o 'index.html' de forma a utilizar essas novas opções de forma dinâmica, reduzindo o tamanho do html consideravelmente.
+. OBS: Devemos usar o '.items', sem '()', para acessar ambas as chaves e os valores de um dicionário no Jinja.
+-- {% for key, val in state_choices.items %}
+
+>>> Diferente do que foi feito no curso, iremos criar um 'partials' para colocar nosso form do search, uma vez que ele é usado tanto no 'index.html', quanto na própria página do 'search.html', importando esta funcionalidade dentro dos respectivos htmls. 
