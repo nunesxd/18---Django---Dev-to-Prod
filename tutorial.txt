@@ -151,10 +151,15 @@ Alteramos o 'index.html' de forma a utilizar essas novas opções de forma dinâ
 >>> Diferente do que foi feito no curso, iremos criar um 'partials' para colocar nosso form do search, uma vez que ele é usado tanto no 'index.html', quanto na própria página do 'search.html', importando esta funcionalidade dentro dos respectivos htmls.
 . OBS: Cabe mencionar que o 'partials' recebe todo o conteúdo do 'context' que aquele template está recebendo, desta forma, se o template do index e do search estão recebendo os dicionários do 'choices.py', isso significa que o partials irá recebê-los também, não sendo necessário a inclusão deles no 'urls.py' nem nada assim.
 
->>> Ainda no app 'listings', agora iremos adicionar a funcionalidade do search. Primeiro verificamos se o campo foi preenchido, através do método 'GET' recebido, obtemos o respectivo valor, e filtramos a base por este valor.
+>>> Ainda no app 'listings', e no partials '_search_form.html', agora iremos adicionar a funcionalidade do search. Primeiro verificamos se o campo foi preenchido, através do método 'GET' recebido, obtemos o respectivo valor, e filtramos a base por este valor.
 Cabe ressaltar que no caso de valores que serão procurados dentro de um campo texto (como um 'like' do SQL, ou 'contains'), ou seja, devemos usar a notação:
 -- [objeto].filter([campo]__icontains=[valor])
 Para os casos que queremos exatamente o mesmo valor:
 -- [campo]__iexact=[valor]
 Para os casos que queremos menor que, incluindo:
 -- [campo]__lte=[valor] ('lte' é 'less then or equal to')
+
+>>> Uma outra funcionalidade interessante de se ter, é a de manter o formulário do search preenchido com a pesquisa anterior, para isso, passamos o 'request.GET' para o template e lidamos no template com os respectivos valores, onde podemos colocar no html:
+-- value="{{ [campo do context].[parâmetro do GET] }}"
+Para os casos que possuem opções (tag 'options' do html), devemos adicionar um condicional verificando o conteúdo do for que fizemos.
+-- {% if [chave do dicionario] == values.[valor] %}
