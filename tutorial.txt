@@ -169,3 +169,13 @@ Primeiro iremos criar o app 'accounts' e adicioná-lo como sendo um 'app' dentro
 Em seguida, iremos adicionar os templates de 'login', 'register' e 'dashboard', e criaremos uma rota para eles no módulo de 'urls.py' no próprio app. Criando os respectivos métodos no módulo 'views.py'.
 . OBS: Para a funcionalidade de 'logout', usamos um outro método do Django, que é o 'redirect'. É interessante apontar que não precisamos importar nada, além do método, para redirecionarmos para a url do app 'pages':
 -- return redirect('index')
+
+>>> Em seguida, adicionamos o conteúdo html aos respectivos templates.
+Como agora estamos lidando com a funcionalidade de login e registro, iremos lidar com métodos POST. Para isso, podemos linkar o nosso método da view com o template pela tag 'action' do html, e assim lidar com os dados na própria view mesmo.
+. OBS: Por padrão o form irá enviar por 'GET', e não por 'POST'.
+-- <form action="{{ url 'register' }}" method="POST">
+Um método de segurança que podemos implementar no envio dos forms é o 'csfr', para previnir envio informações fraudulentas. O csrf linka o envio do form a sessão do usuário, o Django adiciona um elemento 'hidden' com um token específico a aquela sessão. Para isso, basta acrescentar abaixo do form:
+-- {% csrf_token %}
+Em seguida seguimos com a verificação do form dentro da view. No caso, queremos ver se o usuário está enviando um formulário ou se ele está entrando na página, uma vez que ambas ações usam o mesmo método na 'views.py', ambas ações retornam algo diferente a página.
+
+>>> Uma outra funcionalidade que queremos adicionar aos 'forms' é a de mensagem, uma pequena tela que aparecerá para informar algum erro ou sucesso.
