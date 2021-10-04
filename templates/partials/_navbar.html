@@ -10,57 +10,79 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
-        <!--Usamos os condicionais do Jinja para adicionar o 'active' de forma dinâmica, uma vez que o 'navbar' é um 'partials', trecho de html padrão em nosso site-->
-        <li 
-            {% if '/' == request.path %}
+            <!--Usamos os condicionais do Jinja para adicionar o 'active' de forma dinâmica, uma vez que o 'navbar' é um 'partials', trecho de html padrão em nosso site-->
+            <li 
+                {% if '/' == request.path %}
+                    class="nav-item active mr-3"
+                {% else %}
+                    class="nav-item mr-3"
+                {% endif %}
+            >
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li 
+                {% if 'about' in request.path %}
                 class="nav-item active mr-3"
-            {% else %}
-                class="nav-item mr-3"
-            {% endif %}
-        >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-        </li>
-        <li 
-            {% if 'about' in request.path %}
-            class="nav-item active mr-3"
-            {% else %}
-                class="nav-item mr-3"
-            {% endif %}
-        >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
-        <li 
-            {% if 'listings' in request.path %}
-            class="nav-item active mr-3"
-            {% else %}
-                class="nav-item mr-3"
-            {% endif %}
-        >
-            <a class="nav-link" href="{% url 'listings' %}">Featured Listings</a>
-        </li>
+                {% else %}
+                    class="nav-item mr-3"
+                {% endif %}
+            >
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li 
+                {% if 'listings' in request.path %}
+                class="nav-item active mr-3"
+                {% else %}
+                    class="nav-item mr-3"
+                {% endif %}
+            >
+                <a class="nav-link" href="{% url 'listings' %}">Featured Listings</a>
+            </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
-        <li 
-            {% if 'register' in request.path %}
-            class="nav-item active mr-3"
+
+            <!--Verifica se o usuário está logado, caso sim, mostra apenas 'logout'-->
+            {% if user.is_authenticated %}
+                <li class="nav-item active mr-5">
+                    <a class="nav-link"> Welcome {{ user.first_name }}</a>
+                </li>
+                <li
+                    {% if 'dashboard' in request.path %}
+                    class="nav-item active mr-3"
+                    {% else %}
+                        class="nav-item mr-3"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'dashboard' %}"> Dashboard</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
             {% else %}
-                class="nav-item mr-3"
+                <li 
+                    {% if 'register' in request.path %}
+                    class="nav-item active mr-3"
+                    {% else %}
+                        class="nav-item mr-3"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'register' %}">
+                    <i class="fas fa-user-plus"></i> Register</a>
+                </li>
+                <li 
+                    {% if 'login' in request.path %}
+                    class="nav-item active mr-3"
+                    {% else %}
+                        class="nav-item mr-3"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'login' %}">
+                    <i class="fas fa-sign-in-alt"></i> Login</a>
+                </li>
             {% endif %}
-        >
-            <a class="nav-link" href="{% url 'register' %}">
-            <i class="fas fa-user-plus"></i> Register</a>
-        </li>
-        <li 
-            {% if 'login' in request.path %}
-            class="nav-item active mr-3"
-            {% else %}
-                class="nav-item mr-3"
-            {% endif %}
-        >
-            <a class="nav-link" href="{% url 'login' %}">
-            <i class="fas fa-sign-in-alt"></i> Login</a>
-        </li>
+
         </ul>
     </div>
     </div>

@@ -35,7 +35,7 @@ def register(request):
 
         # OPCIONAL - Login após o registro do usuário:
         auth.login(request, user)
-        messages.success(request, 'You are now logged in')
+        #messages.success(request, 'You are now logged in')
         return redirect('index')
 
     else:
@@ -51,7 +51,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'You are now logged in')
+            #messages.success(request, 'You are now logged in')
             return redirect('dashboard')
         else:
             messages.error(request, 'Invalid credentials')
@@ -60,8 +60,10 @@ def login(request):
         return render(request, 'accounts/login.html')
 
 
-def logout():
-    return redirect('index')
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'You are logged out, please login again')
+    return redirect('login')
 
 
 def dashboard(request):

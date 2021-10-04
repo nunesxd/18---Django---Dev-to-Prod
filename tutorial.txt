@@ -196,3 +196,9 @@ Agora temos uma opção, podemos fazer com que o usuário logue após o registro
 
 >>> Agora iremos desenvolver a parte de 'login' do sistema, que não foge muito do que foi desenvolvido.
 Devemos obter os campos do form e validar as credenciais, usando os próprios métodos do django.
+
+>>> Com o login no site, queremos que o navbar apresente apenas a opção de 'logout', que não mostre mais as opções de 'register' e 'login'.
+Para isso, colocamos um condicional no respectivo parcials:
+-- {% if user.is_authenticated %}
+
+>>> Para o logout podemos fazer o processo similar ao login, usando os métodos próprios do django.
