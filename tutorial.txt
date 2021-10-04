@@ -184,3 +184,12 @@ O Django já possui esta funcionalidade pronta, que só precisa ser ativada e co
 Para facilitar o uso das mensagens, criamos um partials com nome de '_alerts.html'. Dentro do html podemos usar a variável 'messages' para capturar as mensagens e alertas.
 . OBS: Usamos o redirect no template de 'register' para testar a funcionalidade, usando o método 'POST' dele.
 Poderíamos colocar um efeito de 'fade out' na mensagem, mas optamos por não fazer.
+
+>>> O próximo passo agora é obter os valores que são enviados pelo form, que podem ser obtidos diretamente pelo método 'POST':
+-- first_name = request.POST['first_name']
+Em seguida checamos as informações conforme as regras, ou seja, a senha deve ser a mesma da confirmação, etc. 
+Uma verificação que podemos fazer é se o usuário existe no sistema, para isso podemos importar o modelo de 'auth' e tentar identificar lá:
+-- User.objects.filter(username=username).exists()
+Caso tudo esteja correto, criamos usuários com os dados fornecidos no formulário.
+Agora temos uma opção, podemos fazer com que o usuário logue após o registro ou não. Iremos fazer com que ele logue para termos um exemplo da funcionalidade:
+-- auth.login(request, user)
