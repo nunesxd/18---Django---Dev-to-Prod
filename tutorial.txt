@@ -179,3 +179,8 @@ Um método de segurança que podemos implementar no envio dos forms é o 'csfr',
 Em seguida seguimos com a verificação do form dentro da view. No caso, queremos ver se o usuário está enviando um formulário ou se ele está entrando na página, uma vez que ambas ações usam o mesmo método na 'views.py', ambas ações retornam algo diferente a página.
 
 >>> Uma outra funcionalidade que queremos adicionar aos 'forms' é a de mensagem, uma pequena tela que aparecerá para informar algum erro ou sucesso.
+O Django já possui esta funcionalidade pronta, que só precisa ser ativada e configurda no 'settings.py'.
+. OBS: É possível realizar algumas customizações de funcionalidade, como a cor dos erros, que podemos colocar como a cor que usamos no 'danger' do 'bootstrap'.
+Para facilitar o uso das mensagens, criamos um partials com nome de '_alerts.html'. Dentro do html podemos usar a variável 'messages' para capturar as mensagens e alertas.
+. OBS: Usamos o redirect no template de 'register' para testar a funcionalidade, usando o método 'POST' dele.
+Poderíamos colocar um efeito de 'fade out' na mensagem, mas optamos por não fazer.
