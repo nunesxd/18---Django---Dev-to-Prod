@@ -193,3 +193,6 @@ Uma verificação que podemos fazer é se o usuário existe no sistema, para iss
 Caso tudo esteja correto, criamos usuários com os dados fornecidos no formulário.
 Agora temos uma opção, podemos fazer com que o usuário logue após o registro ou não. Iremos fazer com que ele logue para termos um exemplo da funcionalidade:
 -- auth.login(request, user)
+
+>>> Agora iremos desenvolver a parte de 'login' do sistema, que não foge muito do que foi desenvolvido.
+Devemos obter os campos do form e validar as credenciais, usando os próprios métodos do django.
