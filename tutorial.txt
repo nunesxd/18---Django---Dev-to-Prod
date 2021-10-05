@@ -205,3 +205,7 @@ Para isso, colocamos um condicional no respectivo parcials:
 
 >>> Com todos os templates devidamente criados, é interesante programarmos o nosso site para mudar o 'title' de forma dinâmica, pois isso pode ajudar em alguns pontos, como no caso do robô do Google, que mostra o resultado como sendo o conteúdo do 'title'. Para isso devemos apenas acrescentar o código abaixo em nosso 'base.html':
 -- {% block title %}
+E em cada template, adicionamos o título que desejamos acrescentar:
+{% block title %} | [Título que queremos dar a página]{% endblock %}
+
+>>> Com isso, agora temos de modificar o modal do 'inquiry', e temos de guardar as informações / perguntas que serão feitas por lá, para isso criaremos mais um app, chamado 'contacts'.
