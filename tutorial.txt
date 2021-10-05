@@ -202,3 +202,6 @@ Para isso, colocamos um condicional no respectivo parcials:
 -- {% if user.is_authenticated %}
 
 >>> Para o logout podemos fazer o processo similar ao login, usando os métodos próprios do django.
+
+>>> Com todos os templates devidamente criados, é interesante programarmos o nosso site para mudar o 'title' de forma dinâmica, pois isso pode ajudar em alguns pontos, como no caso do robô do Google, que mostra o resultado como sendo o conteúdo do 'title'. Para isso devemos apenas acrescentar o código abaixo em nosso 'base.html':
+-- {% block title %}
