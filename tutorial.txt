@@ -216,4 +216,15 @@ Adicionamos o modelo ao 'admin', com as customizações que queremos na tabela.
 Para isso, dentro do 'if', criamos um campo de input ('hidden') contendo esta informação, que caso o usuário não esteja conectado, irá retornar 0 ao invés do respectivo id.
 Pela mesma razão, passamos também as informações dos vendedores ao 'form' (também por um input hidden), pois gostaríamos de avisá-los do recebimento de uma nova pergunta, por exemplo.
 Também colocamos um 'if' nos campos do 'inquiry', uma vez que queremos eles preenchidos, caso do usuário eteja logado.
-Continuamos com o desenvolvimento das views assim como feito anteriormente. 
+Continuamos com o desenvolvimento das views assim como feito anteriormente.
+
+>>> Com o template e a funcionalidade do 'inquiry' prontas, adicionamos algumas checagens aos dados e adicionamos a opção de se enviar um email ao vendedor do imóvel que recebeu uma pergunta. No exemplo iremos utilizar um gmail.
+Adicionamos no 'settings' as informações necessárias, e adicionamos o respectivo código a view do 'contacts'. O código usado para enviar o e-mail pode ser entendido como:
+-- send_mail(
+    '[Assunto]',
+    '[corpo do e-mail]',
+    '[E-mail que irá enviar, no caso, o que configuramos nos settings]',
+    [[array com todos os e-mails que irão receber uma copia, pode ser mais de um]],
+    [demais opções do método de envio do e-mail]
+)
+. OBS: Para o caso do gmail, foi necessário habilitar a opção de 'recebimento de e-mail pouco seguro' na conta que irá disparar os e-mails, no caso 'btreadmin@gmail.com'.
