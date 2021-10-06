@@ -228,3 +228,5 @@ Adicionamos no 'settings' as informações necessárias, e adicionamos o respect
     [demais opções do método de envio do e-mail]
 )
 . OBS: Para o caso do gmail, foi necessário habilitar a opção de 'recebimento de e-mail pouco seguro' na conta que irá disparar os e-mails, no caso 'btreadmin@gmail.com'.
+
+>>> Por fim, atualizamos o template do 'dashboard', para fornecer as informações dinâmicamente e apresentar as peguntas que foram feitas por aquele usuário.
