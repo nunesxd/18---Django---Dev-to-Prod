@@ -215,4 +215,5 @@ Adicionamos o modelo ao 'admin', com as customizações que queremos na tabela.
 >>> No template do 'listing', onde temos o 'inquiry', verificamos também se o usuário está autenticado, pois gostaríamos de passar algumas informações deste ao sistema e preencher alguns campos automaticamente.
 Para isso, dentro do 'if', criamos um campo de input ('hidden') contendo esta informação, que caso o usuário não esteja conectado, irá retornar 0 ao invés do respectivo id.
 Pela mesma razão, passamos também as informações dos vendedores ao 'form' (também por um input hidden), pois gostaríamos de avisá-los do recebimento de uma nova pergunta, por exemplo.
-Também colocamos um 'if' nos campos do 'inquiry', uma vez que queremos eles preenchidos, caso do usuário eteja logado. 
+Também colocamos um 'if' nos campos do 'inquiry', uma vez que queremos eles preenchidos, caso do usuário eteja logado.
+Continuamos com o desenvolvimento das views assim como feito anteriormente. 
