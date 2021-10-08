@@ -256,3 +256,4 @@ Após a conexão, criamos a base de dados no servidor, sem as demais configuraç
 
 >>> Em seguida iremos configurar o ambiente para o nosso app, para isso criamos uma pasta específica para os apps Python, uma vez que podemos usar o servidor para demais aplicações.
 Criamos um arquivo de 'requirements.txt' usando o comando do pip freeze, retirando algumas bibliotecas que são particulares ao VS Code apenas.
+Após importar as informações no GIT HUB, iremos clonar o projeto dentro do servidor Linux previamente configurado.

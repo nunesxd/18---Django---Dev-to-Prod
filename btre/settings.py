@@ -118,6 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -160,7 +164,8 @@ EMAIL_HOST_USER = 'btretest@gmail.com'
 EMAIL_HOST_PASSWORD = 'btreADMIN123'
 EMAIL_USE_TLS = True
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Checa se existe o arquivo de configurações, em nosso ambiente de produção:
+try:
+    from .local_settings import *
+except ImportError:
+    pass
