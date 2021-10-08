@@ -257,3 +257,10 @@ Após a conexão, criamos a base de dados no servidor, sem as demais configuraç
 >>> Em seguida iremos configurar o ambiente para o nosso app, para isso criamos uma pasta específica para os apps Python, uma vez que podemos usar o servidor para demais aplicações.
 Criamos um arquivo de 'requirements.txt' usando o comando do pip freeze, retirando algumas bibliotecas que são particulares ao VS Code apenas.
 Após importar as informações no GIT HUB, iremos clonar o projeto dentro do servidor Linux previamente configurado.
+
+>>> A próxima etapa é de esconder alguns dados sensíveis, presentes em nosso 'settings.py', dentro do arquivo chamado 'local_settings', por convenção.
+Lembrando que o ambiente de produção é o servidor remoto Linux / Ubuntu, ou seja, este será o único lugar que terá esse arquivo. Os campos que queremos retirar são:
+-- SECRET_KEY --- (Podemos alterar alguns dos caracateres internos, de forma a aumentar a segurança).
+-- DEBUG --- (Que deve ser 'False' para o ambiente de produção).
+-- ALLOWED_HOSTS --- (Que devemos colocar o IP de nosso servidor de produção, no caso o servidor Linux criado)
+
