@@ -21,14 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pyip**k$0p!jw#ztu0hp8=f6zlxp52bxt31b_c@ltowr(--tw8'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -83,21 +75,6 @@ USE_THOUSAND_SEPARATOR = True
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        "ENGINE": "mssql",
-        "NAME": "btredb",
-        "USER": "btre_admin",
-        "PASSWORD": "123",
-        "HOST": "BR2296316W1\SQLEXPRESS2014",
-        "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
-            "Trusted_Connection": "yes",
-        },
-        'extra_params': 'PORT=1433'
-    }
-}
 
 
 # Password validation
@@ -156,13 +133,6 @@ MEDIA_URL = '/media/'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
-
-# Configuração do e-mail:
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'btretest@gmail.com'
-EMAIL_HOST_PASSWORD = 'btreADMIN123'
-EMAIL_USE_TLS = True
 
 # Checa se existe o arquivo de configurações, em nosso ambiente de produção:
 try:
