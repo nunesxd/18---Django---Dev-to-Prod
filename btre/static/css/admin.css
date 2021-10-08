@@ -1,0 +1,41 @@
+/* LOGO */
+#header {
+  height: 50px;
+  background: #10284e;
+  color: #fff;
+}
+
+#branding h1 {
+  color: #fff;
+}
+
+/* LINKS DO CABEÇALHO */
+a:link,
+a:visited {
+  color: #10284e;
+}
+
+/* SESSÃO LOGO ABAIXO DO NAVBAR */
+div.breadcrumbs {
+  background: #30caa0;
+  color: #10284e;
+}
+
+div.breadcrumbs a {
+  color: #333;
+}
+
+/* TABELAS DA PAGINA PRINCIPAL DO ADMIN */
+.module h2,
+.module caption,
+.inline-group h2 {
+  background: #30caa0;
+}
+
+/* BOTÕES DE SALVAR OS ITENS */
+.button.default,
+input[type='submit'].default,
+.submit-row input.default {
+  background: #10284e;
+  color: #fff;
+}
