@@ -230,3 +230,29 @@ Adicionamos no 'settings' as informações necessárias, e adicionamos o respect
 . OBS: Para o caso do gmail, foi necessário habilitar a opção de 'recebimento de e-mail pouco seguro' na conta que irá disparar os e-mails, no caso 'btreadmin@gmail.com'.
 
 >>> Por fim, atualizamos o template do 'dashboard', para fornecer as informações dinâmicamente e apresentar as peguntas que foram feitas por aquele usuário.
+
+>>> Com a nossa aplicação pronta e funcionando, o próximo passo é seguir com o deploy. O site que será utilizado é o 'Digital Ocean'.
+. OBS: Link do GIST contendo o passo-a-passo: https://gist.github.com/bradtraversy/cfa565b879ff1458dba08f423cb01d71
+Primeiro iremos criar a nossa SSH com o nome de 'id_rsa_do' ('do' de Digital Ocean). Poderíamos usar apenas o login por senha, mas desta forma é mais seguro e é um método que está sendo muito utilizado atualmente.
+Em seguida, criamos uma conta no digital ocean linkando o SSH informado (conteúdo do '.pub').
+. OBS: Como mudamos o nome padrão da nossa chave SSH, não iremos conseguir logar diretamente no servidor pelo comando 'ssh', para isso, devemos adicionar esta nova chave nas configurações, usando os comandos no cli do 'GIT Bash' (apenas consegui por lá, inclusive logar no servidor):
+-- eval `ssh-agent -s`
+-- ssh-add ./.ssh/id_rsa_do 
+Então podemos contectar usando:
+-- ssh root@134.209.209.210 --- 'root' é o único usuário que temos no Ubuntu, no momento.
+
+>>> Conectado ao servidor, o próximo passo é adicionar as questões de segurança, criando um novo usuário (djangoadmin), diferente do 'root' que utilizamos inicialmente.
+Damos permissão de 'sudo' a este usuário, e precisamos adicionar a chave SSH para este novo usuário também. (Não consegui logar no usuário com a SSH, mesmo com as configurações informadas, então irei continuar pelo root mesmo)
+A próxima etapa é configurar o firewall, comando: 
+-- sudo ufw enable
+Algumas etapas do passo-a-passo são para checar se o OpenSSH está ligado, uma vez que esta é a nossa forma de se logar no servidor, as vezes, ativando o firewall temos problemas para conectarmos.
+Atualizamos os softwares presentes na máquina, assim como rodamos o comando de 'upgrade' do Linux, instalamos também alguns softwares que serão necessários para o desenvolvimento no ambiente, como o próprio Python, por exemplo.
+Link para instalação do SQL Server no Ubuntu:
+-- https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15
+
+>>> Para podermos usar o cli do SQL Server no Ubuntu, devemos executar:
+-- sqlcmd -S localhost -U SA -P '<YourPassword>' --- (Ou podemos omitir a senha, para que ela seja colocada no próximo prompt)
+Após a conexão, criamos a base de dados no servidor, sem as demais configurações de um novo usuário.
+
+>>> Em seguida iremos configurar o ambiente para o nosso app, para isso criamos uma pasta específica para os apps Python, uma vez que podemos usar o servidor para demais aplicações.
+Criamos um arquivo de 'requirements.txt' usando o comando do pip freeze, retirando algumas bibliotecas que são particulares ao VS Code apenas.
